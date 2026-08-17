@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>روزنامة — عدادات المناسبات والتقويم ومواقيت الصلاة</title>
+<meta name="description" content="روزنامة عربية مجانية تعرض التاريخ الهجري والميلادي، العد التنازلي لرمضان والأعياد والدراسة والمناسبات، ومواقيت الصلاة.">
+<meta name="robots" content="index,follow">
+<style>
+:root{
+ --bg:#030b13;--panel:#071824;--panel2:#0a2028;--text:#f7fbff;--muted:#a9bbc5;
+ --gold:#ffd166;--green:#54e38e;--purple:#d879ff;--blue:#50c8ff;--pink:#ff6fc8;
+ --line:#21414b;--shadow:0 25px 70px #000b;--radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
+ color:var(--text);line-height:1.8;overflow-x:hidden;
+ background:
+ radial-gradient(circle at 15% 10%,#12405b 0,transparent 30%),
+ radial-gradient(circle at 85% 20%,#153d31 0,transparent 28%),
+ linear-gradient(145deg,#02080e,#06141d 48%,#02080e);
+ min-height:100vh;
+}
+body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+body:before{
+ background-image:
+ radial-gradient(circle,#fff 0 1px,transparent 1.8px),
+ radial-gradient(circle,#75e8ff 0 1px,transparent 1.8px);
+ background-size:130px 130px,210px 210px;
+ background-position:20px 30px,80px 90px;
+ opacity:.13;animation:stars 25s linear infinite;
+}
+body:after{
+ background:radial-gradient(circle at 50% 105%,#16c79a22,transparent 35%);
+}
+@keyframes stars{to{background-position:150px 180px,0 20px}}
+a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 20px}
+header{
+ position:sticky;top:0;z-index:50;background:#031019dd;backdrop-filter:blur(18px);
+ border-bottom:1px solid #3b687244;
+}
+nav{min-height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:950;font-size:24px;color:var(--gold);text-shadow:0 0 20px #ffd16666}
+.links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.links a{transition:.25s}.links a:hover{color:#fff;transform:translateY(-2px)}
+.hero{padding:75px 0 38px;text-align:center;position:relative}
+.eyebrow{color:var(--green);font-weight:850;letter-spacing:.3px}
+.hero h1{
+ font-size:clamp(38px,6vw,68px);line-height:1.1;margin:12px 0;
+ background:linear-gradient(90deg,#fff,var(--gold),#fff);background-size:200% auto;
+ -webkit-background-clip:text;background-clip:text;color:transparent;animation:titleGlow 5s linear infinite;
+}
+@keyframes titleGlow{to{background-position:200% center}}
+.hero p{color:var(--muted);max-width:760px;margin:0 auto 28px;font-size:17px}
+.search{
+ display:flex;max-width:650px;margin:auto;background:#071822cc;border:1px solid #41616b;
+ border-radius:20px;padding:7px;box-shadow:0 0 35px #0008;backdrop-filter:blur(10px)
+}
+.search input{flex:1;background:none;border:0;color:#fff;padding:12px;font-size:16px;outline:0}
+.search button{border:0;border-radius:14px;padding:11px 20px;background:var(--gold);color:#111;font-weight:900;cursor:pointer}
+.today{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin:25px 0 34px}
+.card{
+ position:relative;background:linear-gradient(145deg,#0b202cdd,#06131cdd);
+ border:1px solid #294853;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);
+ overflow:hidden;backdrop-filter:blur(10px)
+}
+.card:before{
+ content:"";position:absolute;inset:-2px;border-radius:inherit;padding:1px;
+ background:linear-gradient(120deg,#54e38e55,transparent 35%,#50c8ff55,transparent 70%,#ffd16655);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+ -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+ animation:borderFlow 6s linear infinite;
+}
+@keyframes borderFlow{to{filter:hue-rotate(360deg)}}
+.date{font-size:34px;font-weight:950}.muted{color:var(--muted)}
+section h2{font-size:30px;margin:45px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0 55px}
+.event{
+ min-height:205px;display:flex;flex-direction:column;justify-content:space-between;
+ transition:transform .3s,box-shadow .3s
+}
+.event:hover{transform:translateY(-7px) scale(1.01)}
+.event h3{margin:3px 0;font-size:23px}.count{font-size:23px;font-weight:950;color:var(--gold)}
+.green{--accent:#54e38e}.purple{--accent:#d879ff}.blue{--accent:#50c8ff}
+.gold{--accent:#ffd166}
+.event:after{
+ content:"";position:absolute;width:140px;height:140px;border-radius:50%;
+ right:-65px;top:-65px;background:var(--accent);filter:blur(65px);opacity:.18;
+ transition:.4s
+}
+.event:hover:after{opacity:.35}
+.event small{color:#b9cbd3}
+.badge{display:inline-flex;align-items:center;gap:7px;color:var(--accent,#ffd166);font-weight:800}
+.preview{
+ margin-top:12px;padding:12px 15px;border:1px solid #ffffff18;border-radius:14px;
+ background:#00000018;font-weight:800;color:#eef8fb;text-align:center
+}
+.preview:hover{background:#ffffff08}
+.faq details{background:#071923dd;border:1px solid #294853;border-radius:16px;padding:15px;margin:10px 0}
+.faq summary{cursor:pointer;font-weight:800}
+footer{border-top:1px solid #294853;margin-top:60px;padding:30px 0;color:var(--muted);text-align:center}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.5;animation:float 12s linear infinite}
+@keyframes float{0%{transform:translateY(110vh) scale(.4);opacity:0}20%{opacity:.6}100%{transform:translateY(-15vh) scale(1);opacity:0}}
+.event-theme{
+ position:fixed;inset:0;pointer-events:none;z-index:100;opacity:0;transition:opacity .5s
+}
+.event-theme.active{opacity:1}
+.theme-symbol{position:absolute;font-size:30px;animation:fall 6s linear infinite;filter:drop-shadow(0 0 10px currentColor)}
+@keyframes fall{0%{transform:translateY(-10vh) rotate(0);opacity:0}15%{opacity:.8}100%{transform:translateY(115vh) rotate(360deg);opacity:0}}
+@media(max-width:800px){.today{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.links{display:none}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding-top:45px}.date{font-size:28px}}
+
+.info-panel{margin:35px 0 55px}.panel-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:16px}.panel-head h2{margin:0}.panel-head p{margin:0;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}.tab{border:1px solid #31525e;background:#081a24;color:#c9d7dc;border-radius:13px;padding:9px 14px;cursor:pointer;font-weight:800}.tab.active{background:linear-gradient(135deg,#ffd166,#f0a93b);color:#111}
+.event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mini{min-height:150px}.mini h3{margin:3px 0 5px}.mini .when{font-size:20px;font-weight:900;color:var(--gold)}.mini .hijri{color:var(--muted);font-size:13px}.status{display:inline-flex;padding:5px 10px;border-radius:999px;background:#ffffff0c;border:1px solid #ffffff16;font-size:12px;color:#dbe8ec}
+.prayer-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}.next-prayer{font-size:30px;font-weight:950}.prayer-clock{font-size:22px;color:var(--gold);font-weight:900}.prayer-table-wrap{overflow:auto;border-radius:18px;border:1px solid #294853}.prayer-table{width:100%;border-collapse:collapse;min-width:620px}.prayer-table th,.prayer-table td{padding:11px 10px;text-align:center;border-bottom:1px solid #ffffff0c}.prayer-table th{background:#0b222d;color:#ffd166}.prayer-table tr.today-row{background:#54e38e12;box-shadow:inset 3px 0 #54e38e}.source-note{margin-top:12px;color:var(--muted);font-size:12px}.study-note{background:#071923;border:1px solid #294853;border-radius:16px;padding:14px;color:#c8d7dc;margin-top:15px}.countdown-big{font-size:25px;font-weight:950;color:#ffd166}
+@media(max-width:800px){.event-grid{grid-template-columns:1fr 1fr}.prayer-top{grid-template-columns:1fr}}@media(max-width:520px){.event-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="particles" aria-hidden="true">
+  <span class="particle" style="left:8%;animation-delay:0s"></span>
+  <span class="particle" style="left:19%;animation-delay:3s"></span>
+  <span class="particle" style="left:31%;animation-delay:7s"></span>
+  <span class="particle" style="left:44%;animation-delay:1s"></span>
+  <span class="particle" style="left:58%;animation-delay:5s"></span>
+  <span class="particle" style="left:72%;animation-delay:9s"></span>
+  <span class="particle" style="left:86%;animation-delay:2s"></span>
+</div>
+<div id="eventTheme" class="event-theme" aria-hidden="true"></div>
+<header><div class="wrap"><nav><a class="logo" href="./">روزنامة</a><div class="links">
+<a href="./pages/ramadan.html">رمضان</a><a href="./pages/eid.html">الأعياد</a><a href="#studyCenter">الدراسة</a><a href="#prayerCenter">مواقيت الصلاة</a><a href="./pages/calendar.html">التقويم</a>
+</div></nav></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">مواعيدك المهمة في مكان واحد</div><h1>روزنامة عربية ذكية</h1><p>عدادات للمناسبات، التاريخ الهجري والميلادي، ومعلومات يومية في صفحة سريعة ومتجاوبة، مع أجواء مرئية تتغير حسب المناسبة.</p><div class="muted" style="margin-top:-14px;margin-bottom:22px">✨ تتحدث العدادات تلقائيًا كل ثانية</div>
+<form class="search" onsubmit="goSearch(event)"><input id="q" placeholder="ابحث: رمضان، عيد الفطر، الدراسة..." aria-label="بحث"><button>بحث</button></form></section>
+<section class="today"><div class="card"><div class="muted">اليوم</div><div class="date" id="greg"></div><div id="hijri" class="muted"></div></div>
+<div class="card"><div class="muted">الوقت الآن</div><div class="date" id="clock"></div><div class="muted">تتحدث الصفحة تلقائيًا</div></div></section>
+<section><h2>أقرب المناسبات</h2><div class="grid">
+<a class="card event gold" href="./pages/calendar.html"><div><span class="badge">🎆 مناسبة عالمية</span><h3>رأس السنة 2027</h3><small>بداية العام الميلادي الجديد</small></div><div class="count" data-date="2027-01-01T00:00:00+03:00"></div><div class="preview">🎇 معاينة أجواء رأس السنة</div></a>
+<a class="card event green" href="./pages/ramadan.html"><div><span class="badge">🌙 مناسبة إسلامية</span><h3>رمضان 2027</h3><small>موعد متوقع لبداية رمضان</small></div><div class="count" data-date="2027-02-08T00:00:00+03:00"></div><div class="preview">🏮 معاينة أجواء رمضان</div></a>
+<a class="card event purple" href="./pages/eid.html"><div><span class="badge">🎉 عيد الفطر</span><h3>عيد الفطر 2027</h3><small>موعد متوقع لأول أيام العيد</small></div><div class="count" data-date="2027-03-10T00:00:00+03:00"></div><div class="preview">🎊 معاينة أجواء عيد الفطر</div></a>
+<a class="card event blue" href="./pages/eid.html"><div><span class="badge">🕋 عيد الأضحى</span><h3>عيد الأضحى 2027</h3><small>موعد متوقع لأول أيام العيد</small></div><div class="count" data-date="2027-05-17T00:00:00+03:00"></div><div class="preview">🕋 معاينة أجواء عيد الأضحى</div></a>
+<a class="card event" href="./pages/study.html"><div><span class="badge">🏫 الدراسة</span><h3>التقويم الدراسي</h3><small>مواعيد الفصول والإجازات</small></div><div class="count">مواعيد قادمة</div><div class="preview">📚 عرض التقويم الدراسي</div></a>
+<a class="card event" href="./pages/prayer.html"><div><span class="badge">🕌 يوميًا</span><h3>مواقيت الصلاة</h3><small>توقيت الرياض</small></div><div class="count">الرياض</div><div class="preview">🕌 عرض مواقيت الصلاة</div></a>
+</div></section>
+
+<section class="info-panel" id="studyCenter">
+<div class="panel-head"><div><h2>🏫 مركز التقويم الدراسي السعودي</h2><p>مواعيد الدراسة والإجازات والاختبارات مع عدادات مباشرة.</p></div><span class="status">1448–1449 هـ / 2026–2027 م</span></div>
+<div class="tabs" id="studyTabs"><button class="tab active" data-study="general">رياض أطفال • ابتدائي • متوسط • ثانوي</button><button class="tab" data-study="ksu">جامعة الملك سعود</button></div>
+<div id="generalStudy" class="card"><div class="panel-head"><div><h3>التعليم العام</h3><p>التقويم العام يشمل مراحل التعليم العام؛ الاختبارات التفصيلية تختلف حسب المدرسة.</p></div><div><div class="muted">الحدث القادم</div><div id="schoolNextName" class="next-prayer">—</div><div id="schoolNextCountdown" class="countdown-big">—</div></div></div><div class="event-grid" id="generalEvents"></div><div class="study-note">📌 <b>الاختبارات:</b> جدول الاختبارات التفصيلي يظهر للطالب وولي الأمر في نظام نور بعد أن تدخله المدرسة، لذلك لن نضع تاريخًا موحدًا غير مؤكد لكل المدارس.</div></div>
+<div id="ksuStudy" class="card" style="display:none"><div class="panel-head"><div><h3>🎓 جامعة الملك سعود — 2026–2027</h3><p>تقويم جامعي رسمي كمثال؛ بقية الجامعات قد تملك تقاويم مختلفة.</p></div><div><div class="muted">الحدث القادم</div><div id="uniNextName" class="next-prayer">—</div><div id="uniNextCountdown" class="countdown-big">—</div></div></div><div class="event-grid" id="uniEvents"></div><div class="study-note">📌 الجامعات ليست كلها على تقويم واحد؛ سنضيف صفحات الجامعات واحدةً واحدة.</div></div>
+</section>
+<section class="info-panel" id="prayerCenter">
+<div class="panel-head"><div><h2>🕌 مواقيت الصلاة — الرياض</h2><p>مواقيت اليوم والعد التنازلي للصلاة القادمة وجدول الشهر.</p></div><span class="status">الرياض • السعودية</span></div>
+<div class="prayer-top"><div class="card"><div class="muted">الصلاة القادمة</div><div id="nextPrayerName" class="next-prayer">جاري الحساب…</div><div id="nextPrayerCountdown" class="countdown-big">—</div></div><div class="card"><div class="muted">الوقت الآن</div><div id="riyadhClock" class="prayer-clock">—</div><div id="prayerDateLabel" class="muted">—</div></div></div>
+<div class="prayer-table-wrap"><table class="prayer-table"><thead><tr><th>التاريخ</th><th>الفجر</th><th>الشروق</th><th>الظهر</th><th>العصر</th><th>المغرب</th><th>العشاء</th></tr></thead><tbody id="prayerRows"><tr><td colspan="7">جاري تحميل المواقيت…</td></tr></tbody></table></div>
+<div class="source-note">المواقيت تُجلب عبر خدمة خارجية بطريقة أم القرى؛ يلزم اتصال بالإنترنت عند فتح الصفحة.</div>
+</section>
+<section><h2>أسئلة شائعة</h2><div class="faq">
+<details><summary>هل الموقع مجاني؟</summary><p>نعم، الهدف أن تكون أدوات روزنامة مجانية للزائر.</p></details>
+<details><summary>هل العدادات تتغير تلقائيًا؟</summary><p>نعم، العدادات تتحدث كل ثانية.</p></details>
+<details><summary>هل التواريخ الإسلامية المستقبلية نهائية؟</summary><p>قد تكون تقديرية حتى يصدر الإعلان الرسمي.</p></details>
+</div></section>
+</main><footer><div class="wrap">© روزنامة — موقع معلومات ومواعيد مجاني</div></footer>
+<script>
+const pad=n=>String(n).padStart(2,'0');
+function update(){
+ const now=new Date();
+ document.getElementById('greg').textContent=new Intl.DateTimeFormat('ar-SA-u-ca-gregory',{dateStyle:'full'}).format(now);
+ document.getElementById('hijri').textContent=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{dateStyle:'full'}).format(now);
+ document.getElementById('clock').textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ document.querySelectorAll('[data-date]').forEach(el=>{
+   const ms=new Date(el.dataset.date)-now;
+   if(ms<=0){el.textContent='بدأ الموعد';return}
+   const s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
+   el.textContent=`${d} يوم • ${pad(h)}:${pad(m)}:${pad(sec)}`;
+ });
+}
+const themes={
+ 'رأس السنة': ['🎆','🎇','✨','🥳'],
+ 'رمضان': ['🌙','🏮','✨','⭐'],
+ 'عيد الفطر': ['🎉','🎊','✨','🌙'],
+ 'عيد الأضحى': ['🕋','🌙','✨','🐑']
+};
+function previewEvent(name){
+ const layer=document.getElementById('eventTheme');
+ layer.innerHTML='';
+ const symbols=themes[name]||['✨'];
+ for(let i=0;i<18;i++){
+   const s=document.createElement('span');
+   s.className='theme-symbol';
+   s.textContent=symbols[i%symbols.length];
+   s.style.left=(Math.random()*96)+'%';
+   s.style.animationDelay=(Math.random()*4)+'s';
+   s.style.animationDuration=(4+Math.random()*5)+'s';
+   layer.appendChild(s);
+ }
+ layer.classList.add('active');
+ setTimeout(()=>layer.classList.remove('active'),6500);
+}
+document.querySelectorAll('.preview').forEach(btn=>{
+ btn.addEventListener('click',e=>{
+   e.preventDefault(); e.stopPropagation();
+   const text=btn.textContent;
+   if(text.includes('رأس السنة')) previewEvent('رأس السنة');
+   else if(text.includes('رمضان')) previewEvent('رمضان');
+   else if(text.includes('الفطر')) previewEvent('عيد الفطر');
+   else if(text.includes('الأضحى')) previewEvent('عيد الأضحى');
+   else if(text.includes('دراسي')) previewEvent('الدراسة');
+ });
+});
+
+const studyGeneral=[
+{name:'بداية العام الدراسي للطلاب',date:'2026-08-23T00:00:00+03:00',h:'10 ربيع الأول 1448'},
+{name:'إجازة اليوم الوطني',date:'2026-09-23T00:00:00+03:00',h:'12 ربيع الآخر 1448'},
+{name:'إجازة الخريف',date:'2026-11-20T00:00:00+03:00',h:'10 جمادى الآخرة 1448'},
+{name:'بداية الدراسة بعد إجازة الخريف',date:'2026-11-29T00:00:00+03:00',h:'19 جمادى الآخرة 1448'},
+{name:'إجازة منتصف العام الدراسي',date:'2027-01-08T00:00:00+03:00',h:'30 رجب 1448'},
+{name:'إجازة يوم التأسيس',date:'2027-02-19T00:00:00+03:00',h:'12 رمضان 1448'},
+{name:'إجازة عيد الفطر',date:'2027-02-26T00:00:00+03:00',h:'19 رمضان 1448'},
+{name:'بداية الدراسة بعد عيد الفطر',date:'2027-03-14T00:00:00+03:00',h:'5 شوال 1448'},
+{name:'إجازة عيد الأضحى',date:'2027-05-07T00:00:00+03:00',h:'1 ذو الحجة 1448'},
+{name:'بداية الدراسة بعد عيد الأضحى',date:'2027-05-23T00:00:00+03:00',h:'17 ذو الحجة 1448'},
+{name:'بداية إجازة نهاية العام الدراسي',date:'2027-06-24T00:00:00+03:00',h:'19 محرم 1449'}];
+const ksuEvents=[
+{name:'بداية الدراسة للفصل الأول',date:'2026-08-23T00:00:00+03:00',h:'10 ربيع الأول 1448'},
+{name:'إجازة اليوم الوطني',date:'2026-09-23T00:00:00+03:00',h:'12 ربيع الآخر 1448'},
+{name:'إجازة الخريف',date:'2026-11-22T00:00:00+03:00',h:'12 جمادى الآخرة 1448'},
+{name:'بداية الاختبارات النهائية للفصل الأول',date:'2026-12-13T00:00:00+03:00',h:'4 رجب 1448'},
+{name:'نهاية الاختبارات النهائية للفصل الأول',date:'2026-12-26T00:00:00+03:00',h:'17 رجب 1448'},
+{name:'بداية الفصل الثاني',date:'2027-01-10T00:00:00+03:00',h:'2 شعبان 1448'},
+{name:'إجازة عيد الفطر',date:'2027-02-14T00:00:00+03:00',h:'7 رمضان 1448'},
+{name:'بداية الدراسة بعد عيد الفطر',date:'2027-03-14T00:00:00+03:00',h:'6 شوال 1448'},
+{name:'إجازة عيد الأضحى',date:'2027-05-09T00:00:00+03:00',h:'3 ذو الحجة 1448'},
+{name:'بداية الدراسة بعد عيد الأضحى',date:'2027-05-23T00:00:00+03:00',h:'17 ذو الحجة 1448'},
+{name:'بداية الاختبارات النهائية للفصل الثاني',date:'2027-06-06T00:00:00+03:00',h:'1 محرم 1449'},
+{name:'نهاية الاختبارات النهائية',date:'2027-06-19T00:00:00+03:00',h:'14 محرم 1449'},
+{name:'بداية إجازة نهاية العام',date:'2027-06-20T00:00:00+03:00',h:'15 محرم 1449'}];
+function fmtCountdown(ms){if(ms<=0)return'بدأ الموعد';let s=Math.floor(ms/1000),d=Math.floor(s/86400);s%=86400;let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60),sec=s%60;return`${d} يوم • ${pad(h)}:${pad(m)}:${pad(sec)}`}
+function renderStudyEvents(list,id){const c=document.getElementById(id);c.innerHTML='';list.forEach(e=>{const d=document.createElement('div');d.className='card mini';d.innerHTML=`<span class="status">${e.date.slice(0,10)}</span><h3>${e.name}</h3><div class="hijri">${e.h}</div><div class="when" data-study-date="${e.date}"></div>`;c.appendChild(d)})}
+renderStudyEvents(studyGeneral,'generalEvents');renderStudyEvents(ksuEvents,'uniEvents');
+document.querySelectorAll('#studyTabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#studyTabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let k=t.dataset.study==='ksu';document.getElementById('generalStudy').style.display=k?'none':'block';document.getElementById('ksuStudy').style.display=k?'block':'none'});
+function updateStudyCountdown(){const now=new Date();function u(a,n,c){let x=a.find(e=>new Date(e.date)>now);document.getElementById(n).textContent=x?x.name:'انتهت المواعيد الحالية';document.getElementById(c).textContent=x?fmtCountdown(new Date(x.date)-now):'—'}u(studyGeneral,'schoolNextName','schoolNextCountdown');u(ksuEvents,'uniNextName','uniNextCountdown');document.querySelectorAll('[data-study-date]').forEach(e=>e.textContent=fmtCountdown(new Date(e.dataset.studyDate)-now))}
+updateStudyCountdown();
+
+let prayerData=[];const prayerNames={Fajr:'الفجر',Dhuhr:'الظهر',Asr:'العصر',Maghrib:'المغرب',Isha:'العشاء'};const prayerKeys=['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
+function cleanTime(v){return(v||'').split(' ')[0]}function renderPrayerRows(data){document.getElementById('prayerRows').innerHTML=data.map(d=>`<tr><td>${d.date.gregorian.day}/${d.date.gregorian.month}/${d.date.gregorian.year}<br><span class="hijri">${d.date.hijri.day} ${d.date.hijri.month.ar} ${d.date.hijri.year}</span></td>${prayerKeys.map(k=>`<td>${cleanTime(d.timings[k])}</td>`).join('')}</tr>`).join('')}
+function findNextPrayer(){if(!prayerData.length)return null;const now=new Date(),iso=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate()),day=prayerData.find(d=>d.date.gregorian.iso===iso)||prayerData[0];let best=null;for(const k of ['Fajr','Dhuhr','Asr','Maghrib','Isha']){let t=cleanTime(day.timings[k]);if(!t)continue;let [h,m]=t.split(':').map(Number),dt=new Date(now);dt.setHours(h,m,0,0);if(dt>now&&(!best||dt<best.time))best={name:prayerNames[k],time:dt}}if(best)return best;let tm=cleanTime(day.timings.Fajr),[h,m]=tm.split(':').map(Number),dt=new Date(now);dt.setDate(dt.getDate()+1);dt.setHours(h,m,0,0);return{name:'الفجر',time:dt}}
+function updatePrayerUI(){let n=new Date();document.getElementById('riyadhClock').textContent=n.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});document.getElementById('prayerDateLabel').textContent=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{dateStyle:'full'}).format(n);let p=findNextPrayer();if(p){document.getElementById('nextPrayerName').textContent=p.name;document.getElementById('nextPrayerCountdown').textContent=fmtCountdown(p.time-n)}}
+async function loadPrayerTimes(){let n=new Date(),url=`https://api.aladhan.com/v1/calendarByCity/${n.getFullYear()}/${n.getMonth()+1}?city=Riyadh&country=Saudi%20Arabia&method=4`;try{let r=await fetch(url),j=await r.json();if(!j.data)throw 0;prayerData=j.data;renderPrayerRows(prayerData);updatePrayerUI()}catch(e){document.getElementById('prayerRows').innerHTML='<tr><td colspan="7">تعذر تحميل المواقيت. تأكد من اتصال الإنترنت ثم أعد تحميل الصفحة.</td></tr>'}}
+loadPrayerTimes();setInterval(updateStudyCountdown,1000);setInterval(updatePrayerUI,1000);
+
+function goSearch(e){e.preventDefault();const q=document.getElementById('q').value.trim();const map={'رمضان':'ramadan.html','عيد الفطر':'eid.html','عيد الأضحى':'eid.html','الدراسة':'#studyCenter','الصلاة':'#prayerCenter','مواقيت':'#prayerCenter','التقويم':'calendar.html'};for(const k in map)if(q.includes(k)){if(map[k].startsWith('#')){document.querySelector(map[k]).scrollIntoView({behavior:'smooth'});return}location.href='./pages/'+map[k];return}alert('ابحث عن رمضان أو الأعياد أو الدراسة أو الصلاة');}
+update();setInterval(update,1000);
+</script>
+</body></html>
