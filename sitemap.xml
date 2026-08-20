@@ -1,8 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/</loc></url>
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/pages/ramadan.html</loc></url>
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/pages/eid.html</loc></url>
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/pages/study.html</loc></url>
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/pages/prayer.html</loc></url>
-<url><loc>https://YOUR-USERNAME.github.io/roznamah/pages/calendar.html</loc></url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/</loc>
+  </url>
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/pages/ramadan.html</loc>
+  </url>
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/pages/eid.html</loc>
+  </url>
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/pages/study.html</loc>
+  </url>
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/pages/prayer.html</loc>
+  </url>
+  <url>
+    <loc>https://ali4l7.github.io/arabic-calendar/pages/calendar.html</loc>
+  </url>
 </urlset>
